@@ -1,0 +1,9 @@
+services:
+  letsencrypt:
+    image: hamster/letsencrypt:latest
+    container_name: letsencrypt
+    volumes:
+      - /var/www/html/trojan/nginx/html:/var/www/html
+      - /var/www/html/trojan/trojan:/etc/letsencrypt/archive/runtuchigua.cn
+    command: 'certbot certonly --webroot -w /var/www/html -d runtuchigua.cn -d www.runtuchigua.cn --register-unsafely-without-email --agree-tos'
+    network_mode: 'host'

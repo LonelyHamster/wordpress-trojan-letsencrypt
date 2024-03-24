@@ -1,0 +1,49 @@
+services:
+  trojan:
+    image: p4gefau1t/trojan-go
+    container_name: wordpress-trojan
+    restart: always
+    depends_on:
+      - apache
+    volumes:
+      - ./ssl:/var/www
+      - ./trojan-go:/etc/trojan-go
+    network_mode: "host"
+
+  apache:
+    image: hamster/wordpress:latest
+    container_name: wordpress-web
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "80:80"
+      - "443:443"
+      - "1234:1234"
+    environment:
+      WORDPRESS_DB_HOST: 127.0.0.1
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpress123456...
+      WORDPRESS_DB_NAME: wordpressdb
+    volumes:
+      - ./html:/var/www/html
+      - ./conf:/etc/apache2/sites-enabled
+      - ./log:/var/log/apache2
+    network_mode: "host"
+
+  mysql:
+    image: mysql:8.3.0
+    container_name: wordpress-mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: wordpressdb
+      MYSQL_USER: wordpressuser
+      MYSQL_PASSWORD: wordpress123456...
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./mysql:/var/lib/mysql
+    network_mode: "host"
+

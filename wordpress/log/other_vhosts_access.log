@@ -1,0 +1,1 @@
+localhost.localdomain:1234 64.62.197.179 - - [24/Mar/2024:12:50:24 +0000] "GET / HTTP/1.1" 400 488 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/109.0"
