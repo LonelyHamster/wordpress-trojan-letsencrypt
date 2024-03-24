@@ -22,8 +22,8 @@ services:
       - "1234:1234"
     environment:
       WORDPRESS_DB_HOST: 127.0.0.1
-      WORDPRESS_DB_USER: wordpressuser
-      WORDPRESS_DB_PASSWORD: wordpress123456...
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpressdb
     volumes:
       - ./html:/var/www/html
@@ -40,8 +40,8 @@ services:
       - "3306:3306"
     environment:
       MYSQL_DATABASE: wordpressdb
-      MYSQL_USER: wordpressuser
-      MYSQL_PASSWORD: wordpress123456...
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - ./mysql:/var/lib/mysql
